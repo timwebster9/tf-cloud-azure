@@ -18,6 +18,7 @@ resource "azurerm_container_app_environment" "containerapp" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.containerapp_ws.id
 }
 
+
 /*
 resource "azurerm_container_app" "ui" {
   name                         = "ui"
