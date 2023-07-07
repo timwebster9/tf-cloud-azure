@@ -34,7 +34,7 @@ resource "azurerm_container_app" "app01" {
   }
 
   ingress {
-    allow_insecure_connections = true
+    allow_insecure_connections = false
     external_enabled = true
     target_port = 80
 
