@@ -26,8 +26,8 @@ resource "azurerm_container_app" "app01" {
 
   template {
     container {
-      name   = "examplecontainerapp"
-      image  = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
+      name   = "ui"
+      image  = "docker.io/dessalines/lemmy-ui:0.18.1"
       cpu    = 0.25
       memory = "0.5Gi"
     }
