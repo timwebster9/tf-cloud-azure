@@ -17,3 +17,19 @@ resource "azurerm_container_app_environment" "containerapp" {
   resource_group_name        = azurerm_resource_group.containerapp_rg.name
   log_analytics_workspace_id = azurerm_log_analytics_workspace.containerapp_ws.id
 }
+
+resource "azurerm_container_app" "app01" {
+  name                         = "app01"
+  container_app_environment_id = azurerm_container_app_environment.containerapp.id
+  resource_group_name          = azurerm_resource_group.containerapp_rg.name
+  revision_mode                = "Single"
+
+  template {
+    container {
+      name   = "examplecontainerapp"
+      image  = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
+      cpu    = 0.25
+      memory = "0.5Gi"
+    }
+  }
+}
