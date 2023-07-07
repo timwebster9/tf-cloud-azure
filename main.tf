@@ -30,6 +30,11 @@ resource "azurerm_container_app" "app01" {
       image  = "docker.io/dessalines/lemmy-ui:0.18.1"
       cpu    = 0.25
       memory = "0.5Gi"
+
+      env {
+        name = "LEMMY_UI_LEMMY_INTERNAL_HOST"
+        value = "lemmy:8536"
+      }
     }
   }
 
