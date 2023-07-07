@@ -18,8 +18,8 @@ resource "azurerm_container_app_environment" "containerapp" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.containerapp_ws.id
 }
 
-resource "azurerm_container_app" "app01" {
-  name                         = "app01"
+resource "azurerm_container_app" "ui" {
+  name                         = "ui"
   container_app_environment_id = azurerm_container_app_environment.containerapp.id
   resource_group_name          = azurerm_resource_group.containerapp_rg.name
   revision_mode                = "Single"
@@ -45,6 +45,27 @@ resource "azurerm_container_app" "app01" {
 
     traffic_weight {
       percentage = 100
+    }
+  }
+}
+
+resource "azurerm_container_app" "server" {
+  name                         = "server"
+  container_app_environment_id = azurerm_container_app_environment.containerapp.id
+  resource_group_name          = azurerm_resource_group.containerapp_rg.name
+  revision_mode                = "Single"
+
+  template {
+    container {
+      name   = "server"
+      image  = "docker.io/dessalines/lemmy:0.18.1"
+      cpu    = 0.25
+      memory = "0.5Gi"
+
+      env {
+        name = "LEMMY_UI_LEMMY_INTERNAL_HOST"
+        value = "lemmy:8536"
+      }
     }
   }
 }
