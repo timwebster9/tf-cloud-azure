@@ -29,7 +29,7 @@ resource "azurerm_container_app" "nginx" {
       name   = "nginx"
       image  = "docker.io/nginx:1-alpine"
       cpu    = 0.5
-      memory = "1.0Gi"
+      memory = "1Gi"
 
       env {
         name = "RUST_LOG"
@@ -61,7 +61,7 @@ resource "azurerm_container_app" "ui" {
       name   = "ui"
       image  = "docker.io/dessalines/lemmy-ui:0.18.1"
       cpu    = 0.5
-      memory = "1.0Gi"
+      memory = "1Gi"
 
       env {
         name = "LEMMY_UI_LEMMY_INTERNAL_HOST"
@@ -91,7 +91,7 @@ resource "azurerm_container_app" "server" {
       name   = "server"
       image  = "docker.io/dessalines/lemmy:0.18.1"
       cpu    = 0.5
-      memory = "1.0Gi"
+      memory = "1Gi"
 
       env {
         name = "RUST_LOG"
