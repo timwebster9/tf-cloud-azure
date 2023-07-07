@@ -39,7 +39,7 @@ resource "azurerm_container_app" "app01" {
     target_port = 80
 
     traffic_weight {
-      
+      percentage = 100
     }
   }
 }
