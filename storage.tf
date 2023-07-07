@@ -12,6 +12,12 @@ resource "azurerm_storage_share" "containerapp_storage_share" {
   quota                = 5
 }
 
+resource "azurerm_storage_share_file" "nginx_config" {
+  name             = "nginx-config"
+  storage_share_id = azurerm_storage_share.containerapp_storage_share.id
+  source           = "nginx.conf"
+}
+
 resource "azurerm_container_app_environment_storage" "example" {
   name                         = "app01storage"
   container_app_environment_id = azurerm_container_app_environment.containerapp.id

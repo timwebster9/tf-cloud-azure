@@ -31,10 +31,21 @@ resource "azurerm_container_app" "nginx" {
       cpu    = 0.5
       memory = "1Gi"
 
+      volume_mounts {
+        name = "nginx-config"
+        path = "/etc/nginx/nginx.conf"
+      }
+
       env {
         name = "RUST_LOG"
         value = "warn"
       }
+    }
+
+    volume {
+      name = nginx-config
+      storage_name = app01storage
+      storage_type = AzureFile
     }
   }
 
