@@ -43,9 +43,9 @@ resource "azurerm_container_app" "nginx" {
     }
 
     volume {
-      name = nginx-config
-      storage_name = app01storage
-      storage_type = AzureFile
+      name = "nginx-config"
+      storage_name = "app01storage"
+      storage_type = "AzureFile"
     }
   }
 
