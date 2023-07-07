@@ -1,4 +1,4 @@
-resource "azurerm_resource_group" "example" {
-  name     = "example"
+resource "azurerm_resource_group" "containerapp_rg" {
+  name     = "containerapp-rg"
   location = var.location
 }
