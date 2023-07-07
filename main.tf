@@ -37,5 +37,9 @@ resource "azurerm_container_app" "app01" {
     allow_insecure_connections = true
     external_enabled = true
     target_port = 80
+
+    traffic_weight {
+      
+    }
   }
 }
