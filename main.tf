@@ -99,17 +99,17 @@ resource "azurerm_container_app" "ui" {
     }
   }
 }
+*/
 
-
-resource "azurerm_container_app" "server" {
-  name                         = "server"
+resource "azurerm_container_app" "lemmy" {
+  name                         = "lemmy"
   container_app_environment_id = azurerm_container_app_environment.containerapp.id
   resource_group_name          = azurerm_resource_group.containerapp_rg.name
   revision_mode                = "Single"
 
   template {
     container {
-      name   = "server"
+      name   = "lemmy"
       image  = "docker.io/dessalines/lemmy:0.18.1"
       cpu    = 0.5
       memory = "1Gi"
@@ -122,6 +122,7 @@ resource "azurerm_container_app" "server" {
   }
 }
 
+/*
 resource "azurerm_container_app" "pictrs" {
   name                         = "pictrs"
   container_app_environment_id = azurerm_container_app_environment.containerapp.id
