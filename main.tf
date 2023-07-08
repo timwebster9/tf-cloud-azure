@@ -29,10 +29,14 @@ resource "azurerm_container_app" "nginx" {
   resource_group_name          = azurerm_resource_group.containerapp_rg.name
   revision_mode                = "Single"
 
+  identity {
+    type = "SystemAssigned"
+  }
+  
   registry {
     server = "897safsacr.azurecr.io"
-    identity = "/subscriptions/2ca65474-3b7b-40f2-b242-0d2fba4bde6e/resourcegroups/acr-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/acr-mi"
-    
+    identity = "System"
+
     //identity = data.azurerm_user_assigned_identity.acr_mi.id
     // /subscriptions/2ca65474-3b7b-40f2-b242-0d2fba4bde6e/resourcegroups/acr-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/acr-mi
   }
