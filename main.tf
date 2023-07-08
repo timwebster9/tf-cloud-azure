@@ -32,7 +32,7 @@ resource "azurerm_container_app" "nginx" {
   identity {
     type = "SystemAssigned"
   }
-  
+
   registry {
     server = "897safsacr.azurecr.io"
     identity = "System"
@@ -55,6 +55,7 @@ resource "azurerm_container_app" "nginx" {
     }
   }
 
+/*
   ingress {
     allow_insecure_connections = false
     external_enabled = true
@@ -64,6 +65,7 @@ resource "azurerm_container_app" "nginx" {
       percentage = 100
     }
   }
+  */
 }
 
 /*
