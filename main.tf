@@ -27,7 +27,7 @@ resource "azurerm_container_app" "nginx" {
   template {
     container {
       name   = "nginx"
-      image  = "docker.io/nginx:1-alpine"
+      image  = "897safsacr.azurecr.io/lemmy-nginx:db1"
       cpu    = 0.5
       memory = "1Gi"
 
