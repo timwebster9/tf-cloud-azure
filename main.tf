@@ -18,11 +18,21 @@ resource "azurerm_container_app_environment" "containerapp_env" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.containerapp_ws.id
 }
 
+data "azurerm_user_assigned_identity" "acr_mi" {
+  name                = "acr-mi"
+  resource_group_name = "acr-rg"
+}
+
 resource "azurerm_container_app" "nginx" {
   name                         = "nginx"
   container_app_environment_id = azurerm_container_app_environment.containerapp_env.id
   resource_group_name          = azurerm_resource_group.containerapp_rg.name
   revision_mode                = "Single"
+
+  registry {
+    server = "897safsacr.azurecr.io"
+    identity = data.azurerm_user_assigned_identity.acr_mi.id
+  }
 
   template {
     container {
