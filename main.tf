@@ -103,7 +103,7 @@ resource "azurerm_container_app" "ui" {
 
 resource "azurerm_container_app" "lemmy" {
   name                         = "lemmy"
-  container_app_environment_id = azurerm_container_app_environment.containerapp.id
+  container_app_environment_id = azurerm_container_app_environment.containerapp_env.id
   resource_group_name          = azurerm_resource_group.containerapp_rg.name
   revision_mode                = "Single"
 
