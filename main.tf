@@ -18,10 +18,12 @@ resource "azurerm_container_app_environment" "containerapp_env" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.containerapp_ws.id
 }
 
+/*
 data "azurerm_user_assigned_identity" "acr_mi" {
   name                = "acr-mi"
   resource_group_name = "acr-rg"
 }
+*/
 
 resource "azurerm_container_app" "nginx" {
   name                         = "nginx"
