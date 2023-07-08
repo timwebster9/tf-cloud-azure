@@ -124,6 +124,18 @@ resource "azurerm_container_app" "lemmy" {
       }
     }
   }
+
+  ingress {
+    allow_insecure_connections = true
+    target_port = 8536
+
+/*
+    traffic_weight {
+      percentage = 100
+    }
+*/
+  }
+
 }
 
 resource "azurerm_container_app" "postgres" {
@@ -152,6 +164,11 @@ resource "azurerm_container_app" "postgres" {
         value = "lemmy"
       }
     }
+  }
+
+  ingress {
+    allow_insecure_connections = true
+    target_port = 5432
   }
 }
 
