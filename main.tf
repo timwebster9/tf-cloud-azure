@@ -110,13 +110,46 @@ resource "azurerm_container_app" "lemmy" {
   template {
     container {
       name   = "lemmy"
-      image  = "docker.io/dessalines/lemmy:0.18.1"
+      image  = "897safsacr.azurecr.io/lemmy:db2"
       cpu    = 0.5
       memory = "1Gi"
 
       env {
         name = "RUST_LOG"
         value = "warn"
+      }
+      env {
+        name = "LEMMY_DATABASE_URL"
+        value = "postgres://lemmy:lemmy@postgres:5432/lemmy"
+      }
+    }
+  }
+}
+
+resource "azurerm_container_app" "postgres" {
+  name                         = "postgres"
+  container_app_environment_id = azurerm_container_app_environment.containerapp_env.id
+  resource_group_name          = azurerm_resource_group.containerapp_rg.name
+  revision_mode                = "Single"
+
+  template {
+    container {
+      name   = "postgres"
+      image  = "docker.io/postgres:15-alpine"
+      cpu    = 0.5
+      memory = "1Gi"
+
+      env {
+        name = "POSTGRES_USER"
+        value = "lemmy"
+      }
+      env {
+        name = "POSTGRES_PASSWORD"
+        value = "lemmy"
+      }
+      env {
+        name = "POSTGRES_DB"
+        value = "lemmy"
       }
     }
   }
