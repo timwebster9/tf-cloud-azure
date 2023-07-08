@@ -35,14 +35,6 @@ resource "azurerm_container_app" "nginx" {
     type = "SystemAssigned"
   }
 
-/*
-  registry {
-    server = "897safsacr.azurecr.io"
-    identity = "System"
-    // /subscriptions/2ca65474-3b7b-40f2-b242-0d2fba4bde6e/resourcegroups/acr-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/acr-mi
-  }
-*/
-
   template {
     container {
       name   = "nginx"
@@ -57,7 +49,6 @@ resource "azurerm_container_app" "nginx" {
     }
   }
 
-/*
   ingress {
     allow_insecure_connections = false
     external_enabled = true
@@ -65,9 +56,9 @@ resource "azurerm_container_app" "nginx" {
 
     traffic_weight {
       percentage = 100
+      latest_revision = true
     }
   }
-  */
 }
 
 /*
@@ -131,6 +122,7 @@ resource "azurerm_container_app" "lemmy" {
 
     traffic_weight {
       percentage = 100
+      latest_revision = true
     }
   }
 
@@ -167,9 +159,10 @@ resource "azurerm_container_app" "postgres" {
   ingress {
     allow_insecure_connections = true
     target_port = 5432
-    
+
     traffic_weight {
       percentage = 100
+      latest_revision = true
     }
   }
 }
