@@ -11,7 +11,7 @@ resource "azurerm_log_analytics_workspace" "containerapp_ws" {
   retention_in_days   = 30
 }
 
-resource "azurerm_container_app_environment" "containerapp" {
+resource "azurerm_container_app_environment" "containerapp_env" {
   name                       = "capp-01"
   location                   = azurerm_resource_group.containerapp_rg.location
   resource_group_name        = azurerm_resource_group.containerapp_rg.name
@@ -20,7 +20,7 @@ resource "azurerm_container_app_environment" "containerapp" {
 
 resource "azurerm_container_app" "nginx" {
   name                         = "nginx"
-  container_app_environment_id = azurerm_container_app_environment.containerapp.id
+  container_app_environment_id = azurerm_container_app_environment.containerapp_env.id
   resource_group_name          = azurerm_resource_group.containerapp_rg.name
   revision_mode                = "Single"
 
@@ -31,25 +31,13 @@ resource "azurerm_container_app" "nginx" {
       cpu    = 0.5
       memory = "1Gi"
 
-      volume_mounts {
-        name = "nginx-config"
-        path = "/etc/nginx/nginx.conf"
-      }
-
       env {
         name = "RUST_LOG"
         value = "warn"
       }
     }
-
-    volume {
-      name = "nginx-config"
-      storage_name = "app01storage"
-      storage_type = "AzureFile"
-    }
   }
 
-/*
   ingress {
     allow_insecure_connections = false
     external_enabled = true
@@ -59,10 +47,9 @@ resource "azurerm_container_app" "nginx" {
       percentage = 100
     }
   }
-  */
 }
 
-
+/*
 resource "azurerm_container_app" "ui" {
   name                         = "ui"
   container_app_environment_id = azurerm_container_app_environment.containerapp.id
@@ -166,3 +153,4 @@ resource "azurerm_container_app" "pictrs" {
     }
   }
 }
+*/

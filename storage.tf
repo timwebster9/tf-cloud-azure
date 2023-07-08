@@ -1,3 +1,4 @@
+/*
 resource "azurerm_storage_account" "containerapp_storage" {
   name                     = "876saf8as7fstorage"
   resource_group_name      = azurerm_resource_group.containerapp_rg.name
@@ -26,3 +27,4 @@ resource "azurerm_container_app_environment_storage" "example" {
   access_key                   = azurerm_storage_account.containerapp_storage.primary_access_key
   access_mode                  = "ReadOnly"
 }
+*/
