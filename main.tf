@@ -31,7 +31,10 @@ resource "azurerm_container_app" "nginx" {
 
   registry {
     server = "897safsacr.azurecr.io"
-    identity = data.azurerm_user_assigned_identity.acr_mi.id
+    identity = "/subscriptions/2ca65474-3b7b-40f2-b242-0d2fba4bde6e/resourcegroups/acr-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/acr-mi"
+    
+    //identity = data.azurerm_user_assigned_identity.acr_mi.id
+    // /subscriptions/2ca65474-3b7b-40f2-b242-0d2fba4bde6e/resourcegroups/acr-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/acr-mi
   }
 
   template {
