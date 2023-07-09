@@ -20,6 +20,5 @@ variable "home_ip" {
 
 variable "pgconnectionstring" {
   type      = string
-  sensitive = true
+  sensitive = false
 }
-
