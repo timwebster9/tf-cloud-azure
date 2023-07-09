@@ -111,9 +111,14 @@ resource "azurerm_container_app" "lemmy" {
       }
       env {
         name = "LEMMY_DATABASE_URL"
-        value = "postgres://lemmy:lemmy@lemmyserver.postgres.database.azure.com:5432/lemmy"
+        secret_name = "pgconnectionstring"
       }
     }
+  }
+
+  secret {
+    name = "pgconnectionstring"
+    value = var.pgconnectionstring
   }
 
   ingress {
