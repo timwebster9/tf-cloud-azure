@@ -10,6 +10,12 @@ resource "azurerm_postgresql_flexible_server" "postgres" {
   zone                   = "1"
 }
 
+resource "azurerm_postgresql_flexible_server_configuration" "postgres_config" {
+  name      = "azure.extensions"
+  server_id = azurerm_postgresql_flexible_server.postgres.id
+  value     = "PGCRYPTO,LTREE"
+}
+
 resource "azurerm_postgresql_flexible_server_firewall_rule" "home" {
   name             = "home"
   server_id        = azurerm_postgresql_flexible_server.postgres.id
