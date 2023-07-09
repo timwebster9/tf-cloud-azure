@@ -10,11 +10,18 @@ resource "azurerm_postgresql_flexible_server" "postgres" {
   zone                   = "1"
 }
 
-resource "azurerm_postgresql_flexible_server_firewall_rule" "example" {
+resource "azurerm_postgresql_flexible_server_firewall_rule" "home" {
   name             = "home"
   server_id        = azurerm_postgresql_flexible_server.postgres.id
   start_ip_address = var.home_ip
   end_ip_address   = var.home_ip
+}
+
+resource "azurerm_postgresql_flexible_server_firewall_rule" "container_apps" {
+  name             = "container-apps"
+  server_id        = azurerm_postgresql_flexible_server.postgres.id
+  start_ip_address = azurerm_container_app_environment.containerapp_env.static_ip_address
+  end_ip_address   = azurerm_container_app_environment.containerapp_env.static_ip_address
 }
 
 resource "azurerm_postgresql_flexible_server_database" "lemmy_db" {
