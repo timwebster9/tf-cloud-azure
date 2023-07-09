@@ -10,6 +10,13 @@ resource "azurerm_postgresql_flexible_server" "postgres" {
   zone                   = "1"
 }
 
+resource "azurerm_postgresql_flexible_server_firewall_rule" "example" {
+  name             = "home"
+  server_id        = azurerm_postgresql_flexible_server.postgres.id
+  start_ip_address = var.home_ip
+  end_ip_address   = var.home_ip
+}
+
 resource "azurerm_postgresql_flexible_server_database" "lemmy_db" {
   name      = "lemmy"
   server_id = azurerm_postgresql_flexible_server.postgres.id
