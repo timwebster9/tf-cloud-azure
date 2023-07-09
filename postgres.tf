@@ -3,8 +3,8 @@ resource "azurerm_postgresql_flexible_server" "postgres" {
   resource_group_name    = azurerm_resource_group.containerapp_rg.name
   location               = azurerm_resource_group.containerapp_rg.location
   version                = "15"
-  delegated_subnet_id    = azurerm_subnet.postgres_subnet.id
-  private_dns_zone_id    = azurerm_private_dns_zone.postgres_zone.id
+  //delegated_subnet_id    = azurerm_subnet.postgres_subnet.id
+  //private_dns_zone_id    = azurerm_private_dns_zone.postgres_zone.id
   administrator_login    = var.db_username
   administrator_password = var.db_password
   storage_mb             = 32768
