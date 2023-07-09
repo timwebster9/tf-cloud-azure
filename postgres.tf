@@ -28,7 +28,7 @@ resource "azurerm_postgresql_flexible_server_database" "lemmy_db" {
   charset   = "utf8"
 }
 
-/*
+
 resource "azurerm_postgresql_flexible_server_firewall_rule" "home" {
   name             = "home"
   server_id        = azurerm_postgresql_flexible_server.postgres.id
@@ -42,5 +42,5 @@ resource "azurerm_postgresql_flexible_server_firewall_rule" "container_apps" {
   start_ip_address = azurerm_container_app_environment.containerapp_env.static_ip_address
   end_ip_address   = azurerm_container_app_environment.containerapp_env.static_ip_address
 }
-*/
+
 
