@@ -128,6 +128,7 @@ resource "azurerm_container_app" "lemmy" {
 
 }
 
+/*
 resource "azurerm_container_app" "postgres" {
   name                         = "postgres"
   container_app_environment_id = azurerm_container_app_environment.containerapp_env.id
@@ -166,6 +167,8 @@ resource "azurerm_container_app" "postgres" {
     }
   }
 }
+
+*/
 
 /*
 resource "azurerm_container_app" "pictrs" {
