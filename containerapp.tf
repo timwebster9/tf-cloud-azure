@@ -57,7 +57,6 @@ resource "azurerm_container_app" "nginx" {
   }
 }
 
-/*
 resource "azurerm_container_app" "ui" {
   name                         = "ui"
   container_app_environment_id = azurerm_container_app_environment.containerapp.id
@@ -85,8 +84,17 @@ resource "azurerm_container_app" "ui" {
       }
     }
   }
+
+  ingress {
+    allow_insecure_connections = true
+    target_port = 8536
+
+    traffic_weight {
+      percentage = 100
+      latest_revision = true
+    }
+  }
 }
-*/
 
 resource "azurerm_container_app" "lemmy" {
   name                         = "lemmy"
@@ -95,6 +103,10 @@ resource "azurerm_container_app" "lemmy" {
   revision_mode                = "Single"
 
   template {
+
+    min_replicas = 1
+    max_replicas = 2
+    
     container {
       name   = "lemmy"
       image  = "897safsacr.azurecr.io/lemmy:db2"
