@@ -35,7 +35,7 @@ resource "azurerm_container_app" "nginx" {
 
     min_replicas = 1
     max_replicas = 1
-    
+
     container {
       name   = "nginx"
       image  = "897safsacr.azurecr.io/lemmy-nginx:db1"
@@ -61,8 +61,8 @@ resource "azurerm_container_app" "nginx" {
   }
 }
 
-resource "azurerm_container_app" "ui" {
-  name                         = "ui"
+resource "azurerm_container_app" "lemmy_ui" {
+  name                         = "lemmy-ui"
   container_app_environment_id = azurerm_container_app_environment.containerapp_env.id
   resource_group_name          = azurerm_resource_group.containerapp_rg.name
   revision_mode                = "Single"
@@ -73,7 +73,7 @@ resource "azurerm_container_app" "ui" {
     max_replicas = 1
 
     container {
-      name   = "ui"
+      name   = "lemmy-ui"
       image  = "docker.io/dessalines/lemmy-ui:0.18.1"
       cpu    = 0.5
       memory = "1Gi"
@@ -84,7 +84,7 @@ resource "azurerm_container_app" "ui" {
       }
       env {
         name = "LEMMY_UI_LEMMY_EXTERNAL_HOST"
-        value = ""
+        value = "feddit.deggymacets.com"
       }
       env {
         name = "LEMMY_UI_HTTPS"
