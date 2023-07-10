@@ -88,7 +88,7 @@ resource "azurerm_container_app" "lemmy_ui" {
       }
       env {
         name = "LEMMY_UI_HTTPS"
-        value = "false"
+        value = "true"
       }
     }
   }
