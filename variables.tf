@@ -22,3 +22,15 @@ variable "pgconnectionstring" {
   type      = string
   sensitive = false
 }
+
+variable "nginx_image" {
+  type = string
+}
+
+variable "lemmy_ui_image" {
+  type = string
+}
+
+variable "lemmy_image" {
+  type = string
+}

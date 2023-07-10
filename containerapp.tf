@@ -38,7 +38,7 @@ resource "azurerm_container_app" "nginx" {
 
     container {
       name   = "nginx"
-      image  = "897safsacr.azurecr.io/lemmy-nginx:db4"
+      image  = var.nginx_image
       cpu    = 0.5
       memory = "1Gi"
 
@@ -74,7 +74,7 @@ resource "azurerm_container_app" "lemmy_ui" {
 
     container {
       name   = "lemmy-ui"
-      image  = "docker.io/dessalines/lemmy-ui:0.18.1"
+      image  = var.lemmy_ui_image
       cpu    = 0.5
       memory = "1Gi"
 
@@ -117,7 +117,7 @@ resource "azurerm_container_app" "lemmy" {
 
     container {
       name   = "lemmy"
-      image  = "897safsacr.azurecr.io/lemmy:db2"
+      image  = var.lemmy_image
       cpu    = 0.5
       memory = "1Gi"
 
