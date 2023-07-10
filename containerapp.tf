@@ -95,7 +95,7 @@ resource "azurerm_container_app" "lemmy_ui" {
 
   ingress {
     allow_insecure_connections = true
-    target_port = 8536
+    target_port = 1234
 
     traffic_weight {
       percentage = 100
