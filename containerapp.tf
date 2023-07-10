@@ -32,6 +32,10 @@ resource "azurerm_container_app" "nginx" {
   }
 
   template {
+
+    min_replicas = 1
+    max_replicas = 1
+    
     container {
       name   = "nginx"
       image  = "897safsacr.azurecr.io/lemmy-nginx:db1"
@@ -59,11 +63,15 @@ resource "azurerm_container_app" "nginx" {
 
 resource "azurerm_container_app" "ui" {
   name                         = "ui"
-  container_app_environment_id = azurerm_container_app_environment.containerapp.id
+  container_app_environment_id = azurerm_container_app_environment.containerapp_env.id
   resource_group_name          = azurerm_resource_group.containerapp_rg.name
   revision_mode                = "Single"
 
   template {
+
+    min_replicas = 1
+    max_replicas = 1
+
     container {
       name   = "ui"
       image  = "docker.io/dessalines/lemmy-ui:0.18.1"
@@ -105,8 +113,8 @@ resource "azurerm_container_app" "lemmy" {
   template {
 
     min_replicas = 1
-    max_replicas = 2
-    
+    max_replicas = 1
+
     container {
       name   = "lemmy"
       image  = "897safsacr.azurecr.io/lemmy:db2"
