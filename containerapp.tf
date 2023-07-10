@@ -38,7 +38,7 @@ resource "azurerm_container_app" "nginx" {
 
     container {
       name   = "nginx"
-      image  = "897safsacr.azurecr.io/lemmy-nginx:db1"
+      image  = "897safsacr.azurecr.io/lemmy-nginx:db3"
       cpu    = 0.5
       memory = "1Gi"
 
