@@ -50,9 +50,9 @@ resource "azurerm_container_app" "nginx" {
   }
 
   ingress {
-    allow_insecure_connections = false
+    allow_insecure_connections = true
     external_enabled = true
-    target_port = 8536
+    target_port = 8080
 
     traffic_weight {
       percentage = 100
@@ -88,7 +88,7 @@ resource "azurerm_container_app" "lemmy_ui" {
       }
       env {
         name = "LEMMY_UI_HTTPS"
-        value = "false"
+        value = "true"
       }
     }
   }
@@ -149,59 +149,26 @@ resource "azurerm_container_app" "lemmy" {
 
 }
 
-/*
-resource "azurerm_container_app" "postgres" {
-  name                         = "postgres"
-  container_app_environment_id = azurerm_container_app_environment.containerapp_env.id
-  resource_group_name          = azurerm_resource_group.containerapp_rg.name
-  revision_mode                = "Single"
-
-  template {
-    container {
-      name   = "postgres"
-      image  = "docker.io/postgres:15-alpine"
-      cpu    = 0.5
-      memory = "1Gi"
-
-      env {
-        name = "POSTGRES_USER"
-        value = "lemmy"
-      }
-      env {
-        name = "POSTGRES_PASSWORD"
-        value = "lemmy"
-      }
-      env {
-        name = "POSTGRES_DB"
-        value = "lemmy"
-      }
-    }
-  }
-
-  ingress {
-    allow_insecure_connections = true
-    target_port = 5432
-
-    traffic_weight {
-      percentage = 100
-      latest_revision = true
-    }
-  }
-}
-
-*/
-
-/*
 resource "azurerm_container_app" "pictrs" {
   name                         = "pictrs"
   container_app_environment_id = azurerm_container_app_environment.containerapp.id
   resource_group_name          = azurerm_resource_group.containerapp_rg.name
   revision_mode                = "Single"
 
+  ingress {
+    allow_insecure_connections = true
+    target_port = 8080
+
+    traffic_weight {
+      percentage = 100
+      latest_revision = true
+    }
+  }
+
   template {
     container {
       name   = "pictrs"
-      image  = "asonix/pictrs:0.4.0-rc.7"
+      image  = "asonix/pictrs:0.4.0"
       cpu    = 0.25
       memory = "0.5Gi"
 
@@ -244,4 +211,3 @@ resource "azurerm_container_app" "pictrs" {
     }
   }
 }
-*/
