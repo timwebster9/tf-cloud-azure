@@ -17,7 +17,7 @@ resource "azurerm_container_app" "lemmy" {
 
       env {
         name = "RUST_LOG"
-        value = "warn"
+        value = "full"
       }
       env {
         name = "LEMMY_DATABASE_URL"
