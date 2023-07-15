@@ -1,3 +1,4 @@
+/*
 resource "azurerm_virtual_network" "containerapp_vnet" {
   name                = "containerapp-vnet"
   location            = azurerm_resource_group.containerapp_rg.location
@@ -29,3 +30,4 @@ resource "azurerm_subnet" "postgres_subnet" {
     }
   }
 }
+*/

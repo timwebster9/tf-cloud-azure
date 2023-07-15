@@ -11,7 +11,7 @@ resource "azurerm_container_app_environment" "containerapp_env" {
   location                   = azurerm_resource_group.containerapp_rg.location
   resource_group_name        = azurerm_resource_group.containerapp_rg.name
   log_analytics_workspace_id = azurerm_log_analytics_workspace.containerapp_ws.id
-  infrastructure_subnet_id   = azurerm_subnet.containerapp_subnet.id
+  #infrastructure_subnet_id   = azurerm_subnet.containerapp_subnet.id
 }
 
 /*
