@@ -12,7 +12,7 @@ resource "azurerm_postgresql_flexible_server" "postgres" {
   zone                   = "1"
 
   // Errors if the DNS zone VNet link isn't in place at the time of server deployment
-  depends_on = [azurerm_private_dns_zone_virtual_network_link.postgres_zone_link]
+  #depends_on = [azurerm_private_dns_zone_virtual_network_link.postgres_zone_link]
 }
 
 resource "azurerm_postgresql_flexible_server_configuration" "postgres_config" {
