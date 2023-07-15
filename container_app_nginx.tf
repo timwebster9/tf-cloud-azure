@@ -18,11 +18,6 @@ resource "azurerm_container_app" "nginx" {
       image  = var.nginx_image
       cpu    = 0.5
       memory = "1Gi"
-
-      env {
-        name = "RUST_LOG"
-        value = "warn"
-      }
     }
   }
 
