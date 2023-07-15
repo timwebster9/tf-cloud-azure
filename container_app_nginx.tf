@@ -27,7 +27,7 @@ resource "azurerm_container_app" "nginx" {
   }
 
   ingress {
-    allow_insecure_connections = true
+    allow_insecure_connections = false
     external_enabled = true
     target_port = 8080
 

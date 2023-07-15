@@ -32,7 +32,7 @@ resource "azurerm_container_app" "lemmy" {
   }
 
   ingress {
-    allow_insecure_connections = true
+    allow_insecure_connections = false
     target_port = 8536
 
     traffic_weight {

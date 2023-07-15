@@ -5,7 +5,7 @@ resource "azurerm_container_app" "pictrs" {
   revision_mode                = "Single"
 
   ingress {
-    allow_insecure_connections = true
+    allow_insecure_connections = false
     target_port = 8080
 
     traffic_weight {
