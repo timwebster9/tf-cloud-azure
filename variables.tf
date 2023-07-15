@@ -27,6 +27,10 @@ variable "nginx_image" {
   type = string
 }
 
+variable "caddy_image" {
+  type = string
+}
+
 variable "lemmy_ui_image" {
   type = string
 }
