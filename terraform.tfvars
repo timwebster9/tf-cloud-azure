@@ -1,7 +1,7 @@
 // Container App Images
 
 # NGINX
-nginx_image    = "897safsacr.azurecr.io/lemmy-nginx:db1a"
+nginx_image    = "897safsacr.azurecr.io/lemmy-nginx:db1b"
 
 # Caddy
 caddy_image    = "897safsacr.azurecr.io/lemmy-caddy:db18"
